@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'TicketController@index');
+
+Route::get('/ticket/{ticket}/', 'TicketController@show');
