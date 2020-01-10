@@ -1,0 +1,8 @@
+ul.pagination {
+    font-size: 120%;
+    display: inline-block;
+}
+
+ul.pagination li {
+    display: inline;
+}
