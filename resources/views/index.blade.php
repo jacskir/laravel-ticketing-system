@@ -23,6 +23,11 @@
                     <td>{{ $t -> ticket }}</td>
                     <td>{{ $t -> status }}</td>
                     <td>{{ $t -> created_at->format('D jS F') }}</td>
+                    <td>
+                        <a class="button" href="/ticket/{{ $t -> id }}/">
+                            <ion-icon name="eye"></ion-icon>
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -30,5 +35,6 @@
 
     {{ $tickets -> links () }}
 
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
 </html>
