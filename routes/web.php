@@ -14,3 +14,5 @@
 Route::get('/', 'TicketController@index');
 
 Route::get('/ticket/{ticket}/', 'TicketController@show');
+
+Route::get('/ticket/{ticket}/delete/', 'TicketController@destroy');
