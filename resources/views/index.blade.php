@@ -27,6 +27,12 @@
                         <a class="button" href="/ticket/{{ $t -> id }}/">
                             <ion-icon name="eye"></ion-icon>
                         </a>
+                        <a class="button" href="/ticket/{{ $t -> id }}/edit/">
+                            <ion-icon name="create"></ion-icon>
+                        </a>
+                        <a class="button" href="/ticket/{{ $t -> id }}/delete/">
+                            <ion-icon name="trash"></ion-icon>
+                        </a>
                     </td>
                 </tr>
             @endforeach
