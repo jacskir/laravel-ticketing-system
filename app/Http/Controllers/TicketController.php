@@ -59,7 +59,7 @@ class TicketController extends Controller
      */
     public function edit(Ticket $ticket)
     {
-        //
+        return view('tickets.edit', compact('ticket'));
     }
 
     /**
@@ -69,9 +69,13 @@ class TicketController extends Controller
      * @param  \App\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ticket $ticket)
-    {
-        //
+    public function update(Request $request, Ticket $ticket) {
+        $ticket->update([
+            'name' => $request->name,
+            'ticket' => $request->ticket,
+            'status' => $request->status
+        ]);
+        return redirect()->action('TicketController@index');
     }
 
     /**
