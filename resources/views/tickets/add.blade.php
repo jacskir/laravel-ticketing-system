@@ -25,6 +25,31 @@
             <button type="submit">Add Ticket</button>
         </fieldset>
     </form>
+
+    @error ('name')
+        <div class="notification is-warning">
+            <p>
+                {{ $message }}
+            </p>
+        </div>
+    @enderror
+
+    @error ('ticket')
+        <div class="notification is-warning">
+            <p>
+                {{ $message }}
+            </p>
+        </div>
+    @enderror
+
+    @error ('status')
+        <div class="notification is-warning">
+            <p>
+                {{ $message }}
+            </p>
+        </div>
+    @enderror
+
     <p>
     <a href="/">Back</a>
     </p>

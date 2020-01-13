@@ -7,6 +7,18 @@ use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
+    const RULES = [
+        'name' => 'required|min:3|max:64',
+        'ticket' => 'required|min:2|max:256',
+        'status' => 'required',
+    ];
+
+    const MESSAGES = [
+        'name.required' => 'The assignee\'s name is required.',
+        'name.min' => 'The assignee\'s name must be at least 3 characters.',
+        'name.max' => 'The assignee\'s name may not be greater than 64 characters.',
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -37,6 +49,8 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
+        $request -> validate (self::RULES, self::MESSAGES);
+
         Ticket::create ([
             'name' => $request->input('name'),
             'ticket' => $request->input('ticket'),
@@ -74,7 +88,10 @@ class TicketController extends Controller
      * @param  \App\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ticket $ticket) {
+    public function update(Request $request, Ticket $ticket)
+    {
+        $request -> validate (self::RULES, self::MESSAGES);
+
         $ticket->update([
             'name' => $request->name,
             'ticket' => $request->ticket,

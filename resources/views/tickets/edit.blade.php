@@ -26,11 +26,34 @@
                 <option value="closed">closed</option>
             </select>
 
-
             <button type="submit">Save Changes</button>
 
         </fieldset>
     </form>
+
+    @error ('name')
+        <div class="notification is-warning">
+            <p>
+                {{ $message }}
+            </p>
+        </div>
+    @enderror
+
+    @error ('ticket')
+        <div class="notification is-warning">
+            <p>
+                {{ $message }}
+            </p>
+        </div>
+    @enderror
+
+    @error ('status')
+        <div class="notification is-warning">
+            <p>
+                {{ $message }}
+            </p>
+        </div>
+    @enderror
 
 <p>
     <a class="button" href="/">Back</a>
