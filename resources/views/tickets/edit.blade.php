@@ -8,54 +8,78 @@
     Ticket assigned to {{ $ticket -> name }}
 @endsection
 
-@section ('content')
-    <form action = "/ticket/{{ $ticket -> id }}/edit/" method="POST">
-        <fieldset>
-            @csrf
-            
-            <label>Assigned to</label>
-            <input class="input" type="text" name="name" value="{{ $ticket -> name }}">
+@section ('content')   
+    <div class="box">
+        <form action = "/ticket/{{$ticket->id}}/edit/" method="POST">
+            <fieldset>
+                @csrf
 
-            <label>Ticket</label>
-            <input class="input" type="text" name="ticket" value="{{ $ticket -> ticket }}" autofocus>
+                <div class="field">
+                    <label class="label">Assigned to</label>
+                    <input class="input" type="text" name="name" value="{{$ticket->name}}">
+                </div>
 
-            <label>Status</label>
-            <select class="input" name="status">
-                <option value="new">new</option>
-                <option value="open">open</option>
-                <option value="closed">closed</option>
-            </select>
+                @error ('name')
+                    <div class="notification is-warning">
+                        <p>
+                            {{ $message }}
+                        </p>
+                    </div>
+                @enderror
 
-            <button type="submit">Save Changes</button>
 
-        </fieldset>
-    </form>
+                <div class="field">
+                    <label class="label">Ticket</label>
+                    <input class="input" type="text" name="ticket" value="{{$ticket->ticket}}" autofocus>
+                </div>
 
-    @error ('name')
-        <div class="notification is-warning">
-            <p>
-                {{ $message }}
-            </p>
-        </div>
-    @enderror
+                @error ('ticket')
+                    <div class="notification is-warning">
+                        <p>
+                            {{ $message }}
+                        </p>
+                    </div>
+                @enderror
 
-    @error ('ticket')
-        <div class="notification is-warning">
-            <p>
-                {{ $message }}
-            </p>
-        </div>
-    @enderror
 
-    @error ('status')
-        <div class="notification is-warning">
-            <p>
-                {{ $message }}
-            </p>
-        </div>
-    @enderror
+                <div class="field">
+                    <label class="label">Status</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="status">
+                                <option
+                                value="{{$ticket->status}}"
+                                selected hidden>{{$ticket->status}}</option>
+                                <option value="new">new</option>
+                                <option value="open">open</option>
+                                <option value="closed">closed</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
-<p>
-    <a class="button" href="/">Back</a>
-</p>
+                @error ('status')
+                    <div class="notification is-warning">
+                        <p>
+                            {{ $message }}
+                        </p>
+                    </div>
+                @enderror
+                
+                
+                <button class="button is-primary" type="submit">Save Changes</button>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <a class="button is-link is-light" href="/">Back</a>
+
+
+
+
+
+
+
+
 @endsection

@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
-    <link href="{{ asset ('css/ticketingsystem.css') }}" rel="stylesheet" />
-    <title>Ticketing System</title>
-</head>
-<body>
+@extends ('layouts.app')
+
+@section ('page_title')
+    Ticketing System
+@endsection
+
+@section ('page_heading')
+    Ticketing System
+@endsection
+
+
+@section ('content')
     <table class="table is-striped is-hoverable">
         <thead>
             <th>Assigned to</th>
             <th>Ticket</th>
             <th>Status</th>
-            <th>Date</th>
+            <th>Date updated</th>
         </thead>
         <tbody>
             @foreach ($tickets as $t)
@@ -22,7 +23,7 @@
                     <td>{{ $t -> name }}</td>
                     <td>{{ $t -> ticket }}</td>
                     <td>{{ $t -> status }}</td>
-                    <td>{{ $t -> created_at->format('D jS F') }}</td>
+                    <td>{{ $t -> updated_at->format('D jS M Y') }}</td>
                     <td>
                         <a class="button" href="/ticket/{{ $t -> id }}/">
                             <ion-icon name="eye"></ion-icon>
@@ -41,8 +42,8 @@
 
     {{ $tickets -> links () }}
 
-    <a class="button" href="/add">Add a ticket</a>
+    <a class="button is-primary" href="/add">Add a ticket</a>
 
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-</body>
-</html>
+@endsection
+

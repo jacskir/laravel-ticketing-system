@@ -17,11 +17,15 @@
                 <td>{{ $ticket -> name }}</td>
             </tr>
             <tr>
-                <td>Date:</td>
-                <td>{{ $ticket -> created_at -> format('D jS F') }}</td>
+                <td>Created at:</td>
+                <td>{{ $ticket -> created_at -> format('D jS M Y') }}</td>
             </tr>
             <tr>
-                <td></td>
+                <td>Updated at:</td>
+                <td>{{ $ticket -> updated_at -> format('D jS M Y') }}</td>
+            </tr>
+            <tr>
+                <td>Ticket: </td>
                 <td>{{ $ticket -> ticket }}</td>
             </tr>
         </tbody>
@@ -29,6 +33,6 @@
 </div>
 
 <p>
-    <a class="button" href="/">Back</a>
+    <a class="button is-link is-light" href="/">Back</a>
 </p>
 @endsection

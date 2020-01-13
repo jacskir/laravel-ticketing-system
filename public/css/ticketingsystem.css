@@ -1,8 +1,17 @@
 ul.pagination {
     font-size: 120%;
     display: inline-block;
+    margin-bottom: 1em;
 }
 
 ul.pagination li {
     display: inline;
+}
+
+.container {
+    max-width: 90%;
+}
+
+.title {
+    margin-top: 1em;
 }
