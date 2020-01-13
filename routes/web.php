@@ -20,3 +20,7 @@ Route::get('/ticket/{ticket}/delete/', 'TicketController@destroy');
 Route::get('/ticket/{ticket}/edit/', 'TicketController@edit');
 
 Route::post('/ticket/{ticket}/edit/', 'TicketController@update');
+
+Route::get('/add/', 'TicketController@create');
+
+Route::post('/add/', 'TicketController@store');
