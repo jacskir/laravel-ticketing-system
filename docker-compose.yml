@@ -1,0 +1,27 @@
+version: "3.1"
+services:
+    mysql:
+      image: bitnami/mariadb:10.1
+      environment:
+        - ALLOW_EMPTY_PASSWORD=yes
+        - MARIADB_USER=test
+        - MARIADB_DATABASE=testdb
+        - MARIADB_PASSWORD=test
+      ports:
+        - 33060:3306
+    laravel-app:
+      tty: true
+      image: 'bitnami/laravel:latest'
+      labels:
+        kompose.service.type: nodeport
+      environment:
+        - DB_HOST=mysql
+        - DB_USERNAME=test
+        - DB_DATABASE=testdb
+        - DB_PASSWORD=test
+      depends_on:
+        - mysql
+      ports:
+        - 3000:3000
+      volumes:
+        - ./:/app
