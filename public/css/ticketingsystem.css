@@ -7,11 +7,3 @@ ul.pagination {
 ul.pagination li {
     display: inline;
 }
-
-.container {
-    max-width: 90%;
-}
-
-.title {
-    margin-top: 1em;
-}

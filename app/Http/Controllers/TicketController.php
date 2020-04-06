@@ -19,6 +19,11 @@ class TicketController extends Controller
         'name.max' => 'The assignee\'s name may not be greater than 64 characters.',
     ];
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

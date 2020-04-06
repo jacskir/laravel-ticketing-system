@@ -8,11 +8,47 @@
     <title>@yield('page_title', 'Ticketing System')</title>
 </head>
 <body>
+    <nav class="navbar has-shadow is-spaced">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1 class="navbar-item title">
+                    @yield ('page_heading', 'Ticketing System')
+                </h1>
+            </div>
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                    @auth
+                        <div class="navbar-item">
+                            Logged in as: {{ auth()->user()->name }}
+                        </div>
+                        <div class="navbar-item">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button class="button is-light" type="submit">Logout</button>
+                            </form>
+                        </div>
+                    @else
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a href="/register" class="button is-primary">
+                                <strong>Sign up</strong>
+                            </a>
+                            <a href="/login" class="button is-light">
+                                Log in
+                            </a>
+                        </div>
+                    </div>
+
+                    @endauth
+                    
+                </div>
+            </div>
+        </div>
+
+
+    </nav>
+
     <div class="container">
-        <h1 class="title">
-            @yield ('page_heading', 'Ticketing System')
-        </h1>
-        
         @yield ('content')
     </div>
 </body>
