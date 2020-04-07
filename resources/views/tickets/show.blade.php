@@ -1,11 +1,11 @@
 @extends ('layouts.app')
 
 @section ('page_title')
-    Ticketing System | Ticket assigned to {{ $ticket -> name }}
+    Ticketing System | Ticket assigned to {{ $ticket->user->name }}
 @endsection
 
 @section ('page_heading')
-    Ticket assigned to {{ $ticket -> name }}
+    Ticket assigned to {{ $ticket->user->name }}
 @endsection
 
 @section ('content')
@@ -14,19 +14,19 @@
         <tbody>
             <tr>
                 <td>Assigned to:</td>
-                <td>{{ $ticket -> name }}</td>
+                <td>{{ $ticket->user->name }}</td>
             </tr>
             <tr>
                 <td>Created at:</td>
-                <td>{{ $ticket -> created_at -> format('D jS M Y') }}</td>
+                <td>{{ $ticket->created_at->format('D jS M Y') }}</td>
             </tr>
             <tr>
                 <td>Updated at:</td>
-                <td>{{ $ticket -> updated_at -> format('D jS M Y') }}</td>
+                <td>{{ $ticket->updated_at->format('D jS M Y') }}</td>
             </tr>
             <tr>
                 <td>Ticket: </td>
-                <td>{{ $ticket -> ticket }}</td>
+                <td>{{ $ticket->ticket }}</td>
             </tr>
         </tbody>
     </table>

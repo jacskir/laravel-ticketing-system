@@ -1,22 +1,22 @@
 @extends ('layouts.app')
 
 @section ('page_title')
-    Ticketing System | Ticket assigned to {{ $ticket -> name }}
+    Ticketing System | Ticket assigned to {{ $ticket->user->name }}
 @endsection
 
 @section ('page_heading')
-    Ticket assigned to {{ $ticket -> name }}
+    Ticket assigned to {{ $ticket->user->name }}
 @endsection
 
 @section ('content')   
     <div class="box">
-        <form action = "/ticket/{{$ticket->id}}/edit/" method="POST">
+        <form action = "/ticket/{{ $ticket->id }}/edit/" method="POST">
             <fieldset>
                 @csrf
 
                 <div class="field">
                     <label class="label">Assigned to</label>
-                    <input class="input" type="text" name="name" value="{{$ticket->name}}">
+                    <input class="input" type="text" name="name" value="{{ $ticket->user->name }}">
                 </div>
 
                 @error ('name')
@@ -30,7 +30,7 @@
 
                 <div class="field">
                     <label class="label">Ticket</label>
-                    <input class="input" type="text" name="ticket" value="{{$ticket->ticket}}" autofocus>
+                    <input class="input" type="text" name="ticket" value="{{ $ticket->ticket }}" autofocus>
                 </div>
 
                 @error ('ticket')
@@ -66,7 +66,7 @@
                     </div>
                 @enderror
                 
-                
+
                 <button class="button is-primary" type="submit">Save Changes</button>
 
             </fieldset>
@@ -74,12 +74,5 @@
     </div>
 
     <a class="button is-link is-light" href="/">Back</a>
-
-
-
-
-
-
-
 
 @endsection
