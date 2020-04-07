@@ -3,11 +3,12 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Ticket;
+use App\User;
 use Faker\Generator as Faker;
 
 $factory->define(Ticket::class, function (Faker $faker) {
     return [
-        'name' => $faker->firstName . ' ' . $faker->lastName,
+        'user_id' => User::all()->random(),
         'ticket' => $faker->sentence(12, true),
         'status' => $faker->randomElement(['new', 'open', 'closed']),
     ];
