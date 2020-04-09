@@ -80,7 +80,9 @@ class TicketController extends Controller
      */
     public function edit(Ticket $ticket)
     {
-        return view('tickets.edit', compact('ticket'));
+        $users = User::orderBy('name')->get();
+
+        return view('tickets.edit', compact('ticket', 'users'));
     }
 
     /**
@@ -92,12 +94,12 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
-        $request -> validate (self::RULES, self::MESSAGES);
+        $request->validate (self::RULES);
 
         $ticket->update([
-            'name' => $request->name,
+            'user_id' => $request->user_id,
             'ticket' => $request->ticket,
-            'status' => $request->status
+            'status' => $request->status,
         ]);
         return redirect()->action('TicketController@index');
     }
