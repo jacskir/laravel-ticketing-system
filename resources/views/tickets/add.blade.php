@@ -12,17 +12,21 @@
 
                 <div class="field">
                     <label class="label">Assign to</label>
-                    <input class="input" type="text" name="name" placeholder="Enter assignee">
+                    <div class="select">
+                        <select name="user_id">
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }}, {{ $user->email }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
-                @error ('name')
+                @error ('user_id')
                     <div class="notification is-warning">
-                        <p>
-                            {{ $message }}
-                        </p>
+                        <p>{{ $message }}</p>
                     </div>
                 @enderror
-
+                
 
                 <div class="field">
                     <label class="label">Ticket</label>
@@ -31,9 +35,7 @@
 
                 @error ('ticket')
                     <div class="notification is-warning">
-                        <p>
-                            {{ $message }}
-                        </p>
+                        <p>{{ $message }}</p>
                     </div>
                 @enderror                
 
@@ -53,9 +55,7 @@
 
                 @error ('status')
                     <div class="notification is-warning">
-                        <p>
-                            {{ $message }}
-                        </p>
+                        <p>{{ $message }}</p>
                     </div>
                 @enderror
                 

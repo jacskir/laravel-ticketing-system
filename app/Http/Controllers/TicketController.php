@@ -3,20 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Ticket;
+use App\User;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
     const RULES = [
-        'name' => 'required|min:3|max:64',
-        'ticket' => 'required|min:2|max:256',
-        'status' => 'required',
-    ];
-
-    const MESSAGES = [
-        'name.required' => 'The assignee\'s name is required.',
-        'name.min' => 'The assignee\'s name must be at least 3 characters.',
-        'name.max' => 'The assignee\'s name may not be greater than 64 characters.',
+        'user_id' => 'required|numeric|exists:users,id',
+        'ticket' => 'required|string|min:2|max:256',
+        'status' => 'required|string',
     ];
 
     public function __construct()
@@ -43,7 +38,9 @@ class TicketController extends Controller
      */
     public function create()
     {
-        return view('tickets.add');
+        $users = User::orderBy('name')->get();
+        
+        return view('tickets.add', compact('users'));
     }
 
     /**
@@ -54,14 +51,14 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $request -> validate (self::RULES, self::MESSAGES);
+        $request->validate(self::RULES);
 
-        Ticket::create ([
-            'name' => $request->input('name'),
+        $ticket = Ticket::create([
+            'user_id' => $request->input('user_id'),
             'ticket' => $request->input('ticket'),
             'status' => $request->input('status'),
         ]);
-        return redirect () -> action ('TicketController@index');
+        return redirect()->action('TicketController@index');
     }
 
     /**
