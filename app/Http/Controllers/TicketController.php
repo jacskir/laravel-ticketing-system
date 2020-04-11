@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class TicketController extends Controller
 {
     const RULES = [
-        'user_id' => 'required|numeric|exists:users,id',
+        'assignee_id' => 'required|numeric|exists:users,id',
         'ticket' => 'required|string|min:2|max:256',
         'status' => 'required|string',
     ];
@@ -53,11 +53,14 @@ class TicketController extends Controller
     {
         $request->validate(self::RULES);
 
-        $ticket = Ticket::create([
-            'user_id' => $request->input('user_id'),
+        $ticket = Ticket::make([
             'ticket' => $request->input('ticket'),
-            'status' => $request->input('status'),
+            'status' => $request->input('status')
         ]);
+        $ticket->assignee()->associate($request->input('assignee_id'));
+        
+        $ticket->save();
+
         return redirect()->action('TicketController@index');
     }
 

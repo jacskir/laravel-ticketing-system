@@ -8,8 +8,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Ticket::class, function (Faker $faker) {
     return [
-        'user_id' => User::all()->random(),
         'ticket' => $faker->sentence(12, true),
         'status' => $faker->randomElement(['new', 'open', 'closed']),
+        'assignee_id' => User::all()->random()->id,
     ];
 });

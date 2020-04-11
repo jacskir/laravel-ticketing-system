@@ -19,8 +19,8 @@ class CreateTicketsTable extends Migration
             $table->text('ticket')->nullable(false);
             $table->string('status',64)->nullable(false);
             
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('assignee_id');
+            $table->foreign('assignee_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

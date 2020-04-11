@@ -13,7 +13,7 @@
                 <div class="field">
                     <label class="label">Assign to</label>
                     <div class="select">
-                        <select name="user_id">
+                        <select name="assignee_id">
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}, {{ $user->email }}</option>
                             @endforeach
@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                @error ('user_id')
+                @error ('assignee_id')
                     <div class="notification is-warning">
                         <p>{{ $message }}</p>
                     </div>
