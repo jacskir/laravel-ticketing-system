@@ -22,6 +22,9 @@ class CreateTicketsTable extends Migration
             $table->unsignedBigInteger('assignee_id');
             $table->foreign('assignee_id')->references('id')->on('users')->onDelete('cascade');
 
+            $table->unsignedBigInteger('assigner_id');
+            $table->foreign('assigner_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

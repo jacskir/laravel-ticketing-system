@@ -58,6 +58,7 @@ class TicketController extends Controller
             'status' => $request->input('status')
         ]);
         $ticket->assignee()->associate($request->input('assignee_id'));
+        $ticket->assigner()->associate($request->user()->id);
         
         $ticket->save();
 

@@ -37,8 +37,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function tickets()
+    /**
+     * The tickets that the user has been assigned to
+     */
+    public function assigneeTickets()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasMany(Ticket::class, 'assignee_id');
+    }
+
+    /**
+     * The tickets that the user has assigned
+     */
+    public function assignerTickets()
+    {
+        return $this->hasMany(Ticket::class, 'assigner_id');
     }
 }
