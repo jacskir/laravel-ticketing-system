@@ -20,7 +20,7 @@
         <tbody>
             @foreach ($tickets as $t)
                 <tr>
-                    <td>{{ $t->user->name }}</td>
+                    <td>{{ $t->assignee->name }}</td>
                     <td>{{ $t->ticket }}</td>
                     <td>{{ $t->status }}</td>
                     <td>{{ $t->updated_at->format('D jS M Y') }}</td>
