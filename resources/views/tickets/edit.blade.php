@@ -1,11 +1,11 @@
 @extends ('layouts.app')
 
 @section ('page_title')
-    Ticketing System | Ticket assigned to {{ $ticket->user->name }}
+    Ticketing System | Ticket assigned to {{ $ticket->assignee->name }}
 @endsection
 
 @section ('page_heading')
-    Ticket assigned to {{ $ticket->user->name }}
+    Ticket assigned to {{ $ticket->assignee->name }}
 @endsection
 
 @section ('content')   
@@ -17,9 +17,9 @@
                 <div class="field">
                     <label class="label">Assigned to</label>
                     <div class="select">
-                        <select name="user_id">
+                        <select name="assignee_id">
                             @foreach ($users as $user)
-                                <option value="{{ $user->id }}"{{ $ticket->user->id === $user->id ? ' selected' : '' }}>
+                                <option value="{{ $user->id }}"{{ $ticket->assignee->id === $user->id ? ' selected' : '' }}>
                                     {{ $user->name }}, {{ $user->email }}
                                 </option>
                             @endforeach
@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                @error ('name')
+                @error ('assignee_id')
                     <div class="notification is-warning">
                         <p>{{ $message }}</p>
                     </div>

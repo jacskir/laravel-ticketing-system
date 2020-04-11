@@ -102,11 +102,14 @@ class TicketController extends Controller
 
         $request->validate($rules);
 
-        $ticket->update([
-            'user_id' => $request->user_id,
-            'ticket' => $request->ticket,
+        $ticket->fill([
+            'ticket' => $request->input('ticket'),
             'status' => $request->status,
         ]);
+        $ticket->assignee()->associate($request->input('assignee_id'));
+
+        $ticket->save();
+
         return redirect()->action('TicketController@index');
     }
 
