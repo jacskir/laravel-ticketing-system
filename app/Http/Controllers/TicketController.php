@@ -11,7 +11,6 @@ class TicketController extends Controller
     const RULES = [
         'assignee_id' => 'required|numeric|exists:users,id',
         'ticket' => 'required|string|min:2|max:256',
-        'status' => 'required|string',
     ];
 
     public function __construct()
@@ -55,7 +54,7 @@ class TicketController extends Controller
 
         $ticket = Ticket::make([
             'ticket' => $request->input('ticket'),
-            'status' => $request->input('status')
+            'status' => 'new',
         ]);
         $ticket->assignee()->associate($request->input('assignee_id'));
         $ticket->assigner()->associate($request->user()->id);
@@ -98,7 +97,10 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
-        $request->validate (self::RULES);
+        $rules = self::RULES;
+        $rules['status'] = 'required|string';
+
+        $request->validate($rules);
 
         $ticket->update([
             'user_id' => $request->user_id,

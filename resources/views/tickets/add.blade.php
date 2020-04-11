@@ -39,27 +39,6 @@
                     </div>
                 @enderror                
 
-
-                <div class="field">
-                    <label class="label">Status</label>
-                    <div class="control">
-                        <div class="select">
-                            <select class="control" name="status">
-                                <option value="new">new</option>
-                                <option value="open">open</option>
-                                <option value="closed">closed</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                @error ('status')
-                    <div class="notification is-warning">
-                        <p>{{ $message }}</p>
-                    </div>
-                @enderror
-                
-
                 <button class="button is-primary" type="submit">Add Ticket</button>
 
             </fieldset>
