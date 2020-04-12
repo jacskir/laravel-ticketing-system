@@ -12,39 +12,49 @@
 
                 <div class="field">
                     <label class="label">Assign to</label>
-                    <div class="select">
-                        <select name="assignee_id">
-                            @foreach ($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}, {{ $user->email }}</option>
-                            @endforeach
-                        </select>
+                    <div class="control is-expanded has-icons-left">
+                        <div class="select is-fullwidth @error('assignee_id') is-danger @enderror">
+                            <select name="assignee_id">
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}, {{ $user->email }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="icon is-small is-left">
+                            <ion-icon name="person"></ion-icon>
+                        </div>
                     </div>
-                </div>
-
-                @error ('assignee_id')
-                    <div class="notification is-warning">
-                        <p>{{ $message }}</p>
-                    </div>
-                @enderror
-                
+                    @error('assignee_id')
+                        <p class="help is-danger">{{ $message }}</p>
+                    @enderror  
+                </div>                
 
                 <div class="field">
                     <label class="label">Ticket</label>
-                    <input class="input" type="text" name="ticket" placeholder="Enter the Ticket">
+                    <div class="control">
+                        <textarea class="textarea @error('ticket') is-danger @enderror"
+                        name="ticket"
+                        placeholder="Enter the Ticket"
+                        rows="8"></textarea>
+                    </div>
+                    @error('ticket')
+                        <p class="help is-danger">{{ $message }}</p>
+                    @enderror  
                 </div>
 
-                @error ('ticket')
-                    <div class="notification is-warning">
-                        <p>{{ $message }}</p>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-primary" type="submit">Add Ticket</button>
                     </div>
-                @enderror                
-
-                <button class="button is-primary" type="submit">Add Ticket</button>
-
+                    <div class="control">
+                        <a class="button is-light" href="/">Cancel</a>
+                    </div>
+                </div>
+                
             </fieldset>
         </form>
     </div>
 
-    <a class="button is-link is-light" href="/">Back</a>
+    
 
 @endsection
