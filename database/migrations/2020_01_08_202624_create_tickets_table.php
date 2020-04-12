@@ -15,7 +15,7 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
-
+            
             $table->text('ticket')->nullable(false);
             $table->string('status',64)->nullable(false);
             
@@ -24,6 +24,8 @@ class CreateTicketsTable extends Migration
 
             $table->unsignedBigInteger('assigner_id');
             $table->foreign('assigner_id')->references('id')->on('users');
+
+            $table->text('assignee_notes')->nullable(true);
 
             $table->timestamps();
         });

@@ -12,5 +12,6 @@ $factory->define(Ticket::class, function (Faker $faker) {
         'status' => $faker->randomElement(['new', 'open', 'closed']),
         'assignee_id' => User::all()->random()->id,
         'assigner_id' => User::all()->random()->id,
+        'assignee_notes' => $faker->sentence(12, true),
     ];
 });

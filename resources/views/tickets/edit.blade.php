@@ -45,6 +45,18 @@
                 </div>
 
                 <div class="field">
+                    <label class="label">Assignee notes</label>
+                    <div class="control">
+                        <textarea class="textarea @error('assignee_notes') is-danger @enderror"
+                        name="assignee notes"
+                        rows="8">{{ $ticket->assignee_notes }}</textarea>
+                    </div>
+                    @error('assignee_notes')
+                        <p class="help is-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="field">
                     <label class="label">Status</label>
                     <div class="control has-icons-left">
                         <div class="select @error('status') is-danger @enderror">

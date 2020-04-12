@@ -98,13 +98,15 @@ class TicketController extends Controller
     public function update(Request $request, Ticket $ticket)
     {
         $rules = self::RULES;
-        $rules['status'] = 'required|string';
+        $rules['status'] = 'required|string|in:new,open,closed';
+        $rules['assignee_notes'] = 'string|nullable|max:256';
 
         $request->validate($rules);
 
         $ticket->fill([
             'ticket' => $request->input('ticket'),
             'status' => $request->status,
+            'assignee_notes' => $request->input('assignee_notes'),
         ]);
         $ticket->assignee()->associate($request->input('assignee_id'));
 
