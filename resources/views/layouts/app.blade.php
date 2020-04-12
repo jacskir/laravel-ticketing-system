@@ -11,9 +11,7 @@
     <nav class="navbar has-shadow is-spaced">
         <div class="container">
             <div class="navbar-brand">
-                <h1 class="navbar-item title">
-                    @yield ('page_heading', 'Ticketing System')
-                </h1>
+                <h1 class="navbar-item title">Ticketing System</h1>
             </div>
             <div class="navbar-menu">
                 <div class="navbar-end">

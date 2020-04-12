@@ -4,10 +4,6 @@
     Ticketing System | Ticket assigned to {{ $ticket->assignee->name }}
 @endsection
 
-@section ('page_heading')
-    Ticket assigned to {{ $ticket->assignee->name }}
-@endsection
-
 @section ('content')   
     <div class="box">
         <form action = "/ticket/{{ $ticket->id }}/edit/" method="POST">
@@ -15,66 +11,74 @@
                 @csrf
 
                 <div class="field">
-                    <label class="label">Assigned to</label>
-                    <div class="select">
-                        <select name="assignee_id">
-                            @foreach ($users as $user)
-                                <option value="{{ $user->id }}"{{ $ticket->assignee->id === $user->id ? ' selected' : '' }}>
-                                    {{ $user->name }}, {{ $user->email }}
-                                </option>
-                            @endforeach
-                        </select>
+                    <label class="label">Assign to</label>
+                    <div class="control is-expanded has-icons-left">
+                        <div class="select is-fullwidth @error('assignee_id') is-danger @enderror">
+                            <select name="assignee_id">
+                                @foreach ($users as $user)
+                                    <option
+                                    value="{{ $user->id }}"{{ $ticket->assignee->id === $user->id ? ' selected' : '' }}>
+                                        {{ $user->name }}, {{ $user->email }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="icon is-small is-left">
+                            <ion-icon name="person"></ion-icon>
+                        </div>
                     </div>
+                    @error('assignee_id')
+                        <p class="help is-danger">{{ $message }}</p>
+                    @enderror
                 </div>
-
-                @error ('assignee_id')
-                    <div class="notification is-warning">
-                        <p>{{ $message }}</p>
-                    </div>
-                @enderror
-
 
                 <div class="field">
                     <label class="label">Ticket</label>
-                    <input class="input" type="text" name="ticket" value="{{ $ticket->ticket }}" autofocus>
-                </div>
-
-                @error ('ticket')
-                    <div class="notification is-warning">
-                        <p>{{ $message }}</p>
+                    <div class="control">
+                        <textarea class="textarea @error('ticket') is-danger @enderror"
+                        name="ticket"
+                        rows="8">{{ $ticket->ticket }}</textarea>
                     </div>
-                @enderror
-
+                    @error('ticket')
+                        <p class="help is-danger">{{ $message }}</p>
+                    @enderror
+                </div>
 
                 <div class="field">
                     <label class="label">Status</label>
-                    <div class="control">
-                        <div class="select">
+                    <div class="control has-icons-left">
+                        <div class="select @error('status') is-danger @enderror">
                             <select name="status">
-                                <option
-                                value="{{$ticket->status}}"
-                                selected hidden>{{$ticket->status}}</option>
-                                <option value="new">new</option>
-                                <option value="open">open</option>
-                                <option value="closed">closed</option>
+                                <option value="new"{{ $ticket->status === 'new' ? ' selected' : '' }}>
+                                    new
+                                </option>
+                                <option value="open"{{ $ticket->status === 'open' ? ' selected' : '' }}>
+                                    open
+                                </option>
+                                <option value="closed"{{ $ticket->status === 'closed' ? ' selected' : '' }}>
+                                    closed
+                                </option>
                             </select>
                         </div>
+                        <div class="icon is-small is-left">
+                            <ion-icon name="list"></ion-icon>
+                        </div>
                     </div>
+                    @error('status')
+                        <p class="help is-danger">{{ $message }}</p>
+                    @enderror
                 </div>
 
-                @error ('status')
-                    <div class="notification is-warning">
-                        <p>{{ $message }}</p>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-primary" type="submit">Save Changes</button>
                     </div>
-                @enderror
-                
-
-                <button class="button is-primary" type="submit">Save Changes</button>
+                    <div class="control">
+                        <a class="button is-light" href="/">Cancel</a>
+                    </div>
+                </div>
 
             </fieldset>
         </form>
     </div>
-
-    <a class="button is-link is-light" href="/">Back</a>
-
 @endsection
