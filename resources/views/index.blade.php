@@ -10,7 +10,7 @@
 
 
 @section ('content')
-    <table class="table is-striped is-hoverable">
+    <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <th>Assigned to</th>
             <th>Ticket</th>
@@ -24,16 +24,22 @@
                     <td>{{ $t->ticket }}</td>
                     <td>{{ $t->status }}</td>
                     <td>{{ $t->updated_at->format('D jS M Y') }}</td>
-                    <td>
+                    <td class="shrink">
                         <div class="field is-grouped">
                             <a class="button" href="/ticket/{{ $t->id }}/">
-                                <ion-icon name="eye"></ion-icon>
+                                <span class="icon">
+                                    <ion-icon name="eye"></ion-icon>
+                                </span>
                             </a>
                             <a class="button" href="/ticket/{{ $t->id }}/edit/">
-                                <ion-icon name="create"></ion-icon>
+                                <span class="icon">
+                                    <ion-icon name="create"></ion-icon>
+                                </span>
                             </a>
                             <a class="button" href="/ticket/{{ $t->id }}/delete/">
-                                <ion-icon name="trash"></ion-icon>
+                                <span class="icon">
+                                    <ion-icon name="trash"></ion-icon>
+                                </span>
                             </a>
                         </div>
                     </td>
