@@ -7,3 +7,8 @@ ul.pagination {
 ul.pagination li {
     display: inline;
 }
+
+td.shrink {
+    white-space: nowrap;
+    width: 1px;
+}
