@@ -11,7 +11,7 @@
     <nav class="navbar has-shadow is-spaced">
         <div class="container">
             <div class="navbar-brand">
-                <h1 class="navbar-item title">Ticketing System</h1>
+                <a class="navbar-item title"href="/">Ticketing System</a>
             </div>
             <div class="navbar-menu">
                 <div class="navbar-end">

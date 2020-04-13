@@ -12,3 +12,7 @@ td.shrink {
     white-space: nowrap;
     width: 1px;
 }
+
+a.title:hover {
+    color: #4a4a4a;
+}
