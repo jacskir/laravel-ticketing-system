@@ -16,3 +16,7 @@ td.shrink {
 a.title:hover {
     color: #4a4a4a;
 }
+
+a[disabled] {
+    pointer-events: none;
+}

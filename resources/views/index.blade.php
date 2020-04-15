@@ -26,17 +26,22 @@
                     <td>{{ $t->updated_at->format('D jS M Y') }}</td>
                     <td class="shrink">
                         <div class="field is-grouped">
-                            <a class="button" href="/ticket/{{ $t->id }}/">
+                            <a class="button"
+                            href="/ticket/{{ $t->id }}/">
                                 <span class="icon">
                                     <ion-icon name="eye"></ion-icon>
                                 </span>
                             </a>
-                            <a class="button" href="/ticket/{{ $t->id }}/edit/">
+                            <a class="button"
+                            href="/ticket/{{ $t->id }}/edit/"
+                            @cannot ('update', $t) disabled @endcannot>
                                 <span class="icon">
                                     <ion-icon name="create"></ion-icon>
                                 </span>
                             </a>
-                            <a class="button" href="/ticket/{{ $t->id }}/delete/">
+                            <a class="button"
+                            href="/ticket/{{ $t->id }}/delete/"
+                            @cannot ('delete', $t) disabled @endcannot>
                                 <span class="icon">
                                     <ion-icon name="trash"></ion-icon>
                                 </span>

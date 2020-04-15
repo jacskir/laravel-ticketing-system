@@ -83,6 +83,8 @@ class TicketController extends Controller
      */
     public function edit(Ticket $ticket)
     {
+        $this->authorize('update', $ticket);
+
         $users = User::orderBy('name')->get();
 
         return view('tickets.edit', compact('ticket', 'users'));
@@ -97,6 +99,8 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
+        $this->authorize('update', $ticket);
+
         $rules = self::RULES;
         $rules['status'] = 'required|string|in:new,open,closed';
         $rules['assignee_notes'] = 'string|nullable|max:256';
@@ -123,6 +127,8 @@ class TicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
+        $this->authorize('delete', $ticket);
+        
         $ticket->delete();
         return redirect()->action('TicketController@index');
     }
