@@ -26,3 +26,7 @@ Route::post('/ticket/{ticket}/edit/', 'TicketController@update');
 Route::get('/add/', 'TicketController@create');
 
 Route::post('/add/', 'TicketController@store');
+
+Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
