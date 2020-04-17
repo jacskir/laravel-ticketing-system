@@ -25,18 +25,6 @@
                                 <button class="button is-light" type="submit">Logout</button>
                             </form>
                         </div>
-                    @else
-                    <div class="navbar-item">
-                        <div class="buttons">
-                            <a href="/register" class="button is-primary">
-                                <strong>Sign up</strong>
-                            </a>
-                            <a href="/login" class="button is-light">
-                                Log in
-                            </a>
-                        </div>
-                    </div>
-
                     @endauth
                     
                 </div>
