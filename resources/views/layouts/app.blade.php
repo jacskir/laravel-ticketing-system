@@ -12,7 +12,10 @@
     <nav class="navbar has-shadow is-spaced">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item title"href="/">Ticketing System</a>
+                <a class="navbar-item" href="/">
+                    <img src="{{ asset('images/favicon.png') }}">
+                    <div class="title is-4">&nbsp;Ticketing System</div>
+                </a>
             </div>
             <div class="navbar-menu">
                 <div class="navbar-end">
