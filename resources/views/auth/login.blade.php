@@ -55,6 +55,17 @@
                             </div>
                         </div>
                     </form>
+
+                    <hr class="login-hr">
+
+                    <p class="has-text-centered has-text-grey">- Or -</p>
+
+                    <a class="button is-fullwidth" href="/login/github">
+                        <span class="icon">
+                            <ion-icon name="logo-github"></ion-icon>
+                        </span>
+                        <span>Sign in with Github</span>
+                    </a>
                 </div>
             </div>
         </div>

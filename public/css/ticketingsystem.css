@@ -20,3 +20,8 @@ a.title:hover {
 a[disabled] {
     pointer-events: none;
 }
+
+.login-hr {
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+}
