@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Ticket;
 use App\User;
+use App\Mail\TicketAssigned;
+use App\Mail\TicketClosed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class TicketController extends Controller
 {
@@ -61,6 +64,13 @@ class TicketController extends Controller
         
         $ticket->save();
 
+        Mail::to($ticket->assignee->email)
+            ->send(new TicketAssigned(
+                $ticket->id,
+                $ticket->assignee->name,
+                $ticket->assigner->name,
+        ));
+
         return redirect()->action('TicketController@index');
     }
 
@@ -107,6 +117,8 @@ class TicketController extends Controller
 
         $request->validate($rules);
 
+        $priorStatus = $ticket->status;
+
         $ticket->fill([
             'ticket' => $request->input('ticket'),
             'status' => $request->status,
@@ -115,6 +127,15 @@ class TicketController extends Controller
         $ticket->assignee()->associate($request->input('assignee_id'));
 
         $ticket->save();
+
+        if (($ticket->status === 'closed') && ($priorStatus != 'closed')) {
+            Mail::to($ticket->assigner->email)
+                ->send(new TicketClosed(
+                    $ticket->id,
+                    auth()->user()->name,
+                    $ticket->assigner->name,
+            ));
+        }
 
         return redirect()->action('TicketController@index');
     }
