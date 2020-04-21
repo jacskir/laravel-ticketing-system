@@ -16,8 +16,17 @@
                     <img src="{{ asset('images/favicon.png') }}">
                     <div class="title is-4">&nbsp;Ticketing System</div>
                 </a>
+                @auth
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarUser">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                @endauth
             </div>
-            <div class="navbar-menu">
+            <div id="navbarUser" class="navbar-menu">
+                <div class="navbar-start">
+                </div>
                 <div class="navbar-end">
                     @auth
                         <div class="navbar-item">
@@ -30,12 +39,9 @@
                             </form>
                         </div>
                     @endauth
-                    
                 </div>
             </div>
         </div>
-
-
     </nav>
 
     <div class="container">
@@ -43,5 +49,6 @@
     </div>
 
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script src="{{ asset ('js/script.js') }}"></script>
 </body>
 </html>
