@@ -101,6 +101,8 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
+        $this->authorize('view', $ticket);
+
         return view('tickets.show', compact('ticket'));
     }
 

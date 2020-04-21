@@ -37,7 +37,7 @@ class TicketPolicy
      */
     public function view(User $user, Ticket $ticket)
     {
-        //
+        return ($user->id === $ticket->assignee_id) || ($user->id === $ticket->assigner_id);
     }
 
     /**
