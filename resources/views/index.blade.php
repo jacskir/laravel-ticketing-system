@@ -29,7 +29,7 @@
         </div>
     </nav>
 
-    <table class="table is-striped is-hoverable is-fullwidth">
+    <table class="table is-striped is-hoverable is-fullwidth is-narrow">
         <thead>
             <th>Assigned to</th>
             <th>Ticket</th>
