@@ -26,11 +26,30 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tickets = Ticket::paginate(5);
+        $filter = $request->filter;
 
-        return view('index', compact('tickets'));
+        if ($filter === 'assigned-to-me') {
+            $tickets = auth()->user()->assigneeTickets()->paginate(5);
+            $tickets->appends(['filter' => $filter])->links();
+        }
+        else if ($filter === 'assigned-by-me') {
+            $tickets = auth()->user()->assignerTickets()->paginate(5);
+            $tickets->appends(['filter' => $filter])->links();
+        }
+        else {
+            if (auth()->user()->is_admin) {
+                $tickets = Ticket::paginate(5);
+            } else {
+                $tickets = Ticket::
+                where('assignee_id', auth()->user()->id)
+                    ->orWhere('assigner_id', auth()->user()->id)
+                    ->paginate(5);
+            }
+        }
+        
+        return view('index', compact('tickets', 'filter'));
     }
 
     /**

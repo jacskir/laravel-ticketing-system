@@ -23,3 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+const ticketFilterSelect = document.querySelector('#ticketFilter');
+ticketFilterSelect.addEventListener('change', (e) => {
+    console.log(ticketFilterSelect.selectedIndex);
+
+    switch(ticketFilterSelect.selectedIndex) {
+        case 0:
+            window.location = "/";
+            break;
+        case 1:
+            window.location = "/?filter=assigned-to-me";
+            break;
+        case 2:
+            window.location = "/?filter=assigned-by-me";
+            break;
+    }
+});

@@ -10,6 +10,25 @@
 
 
 @section ('content')
+    <nav class="level is-mobile is-marginless homepage-level">
+        <div class="level-left">
+            <div class="level-item">
+                <div class="select">
+                    <select id="ticketFilter">
+                        <option>All</option>
+                        <option {{ $filter === 'assigned-to-me' ? 'selected' : '' }}>Assigned to me</option>
+                        <option {{ $filter === 'assigned-by-me' ? 'selected' : '' }}>Assigned by me</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="level-right">
+            <div class="level-item">
+                <a class="button is-primary" href="/add">Add a ticket</a>
+            </div>
+        </div>
+    </nav>
+
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <th>Assigned to</th>
@@ -54,7 +73,5 @@
     </table>
 
     {{ $tickets->links() }}
-
-    <a class="button is-primary" href="/add">Add a ticket</a>
 @endsection
 
