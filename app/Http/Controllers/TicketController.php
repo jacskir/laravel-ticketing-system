@@ -87,7 +87,7 @@ class TicketController extends Controller
             ->send(new TicketAssigned(
                 $ticket->id,
                 $ticket->assignee->name,
-                $ticket->assigner->name,
+                $ticket->assigner->name
         ));
 
         return redirect()->action('TicketController@index');
@@ -154,7 +154,7 @@ class TicketController extends Controller
                 ->send(new TicketClosed(
                     $ticket->id,
                     auth()->user()->name,
-                    $ticket->assigner->name,
+                    $ticket->assigner->name
             ));
         }
 
